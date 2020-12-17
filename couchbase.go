@@ -20,7 +20,7 @@ func main() {
 		panic(err)
 	}
 	// バケットへの参照の取得
-	bucket := cluster.Bucket("test")
+	bucket := cluster.Bucket("go_app")
 
 	// バケットに接続され確実に利用可能になるまで待つ
 	err = bucket.WaitUntilReady(5*time.Second, nil)
@@ -32,9 +32,9 @@ func main() {
 	collection := bucket.DefaultCollection()
 
 	// ドキュメントの定義（ユーザ情報）
-	docUser := map[string]string{"id": 1, "name": "田中", "type": "user"}
+	docUser := map[string]string{"id": "001", "name": "佐藤", "type": "user"}
 	//　ドキュメントIDの定義
-	docId := "user_1"
+	docId := "user_001"
 
 	// ドキュメントをUpsertする
 	upsertResult, err := collection.Upsert(docId, docUser, &gocb.UpsertOptions{})
